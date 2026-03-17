@@ -4,6 +4,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
+import LandingPage from "./pages/LandingPage";
+import DocumentationPage from "./pages/DocumentationPage";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 import CatalogoPage from "./pages/CatalogoPage";
@@ -47,8 +49,10 @@ function AppRoutes() {
 
   return (
     <Routes>
-      <Route path="/login" element={user ? <Navigate to="/" replace /> : <LoginPage />} />
-      <Route path="/" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
+      <Route path="/" element={user ? <Navigate to="/dashboard" replace /> : <LandingPage />} />
+      <Route path="/docs" element={<DocumentationPage />} />
+      <Route path="/login" element={user ? <Navigate to="/dashboard" replace /> : <LoginPage />} />
+      <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
       <Route path="/catalogo" element={<ProtectedRoute><CatalogoPage /></ProtectedRoute>} />
       <Route path="/emprestimos" element={<ProtectedRoute><EmprestimosPage /></ProtectedRoute>} />
       <Route path="/reservas" element={<ProtectedRoute><ReservasPage /></ProtectedRoute>} />
